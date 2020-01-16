@@ -1,1 +1,1 @@
-# graduate_project
+# 통화 데이터 기반 모바일 TTS 어플
