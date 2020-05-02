@@ -215,7 +215,7 @@ def plot_graph_and_save_audio(args,
         pre_surplus_idx=0, post_surplus_idx=1,
         use_short_concat=False,
         use_manual_attention=False, save_alignment=False,
-        librosa_trim=False, attention_trim=False,
+        librosa_trim=True, attention_trim=True,
         time_str=None, isKorean=True):
 
     idx, (wav, alignment, path, text, sequence) = args
