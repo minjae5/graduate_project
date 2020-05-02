@@ -50,7 +50,7 @@ If you want to synthesize a speech in Korean dicrectly, follow [2-3. Download pr
             ├── 3.mp3
             └── ...
 
-and `YOUR_DATASET/alignment.json` should look like:
+and `YOUR_DATASET/alignment.json` 파일의 상태 :
 
     {
         "./datasets/YOUR_DATASET/audio/001.mp3": "My name is Taehoon Kim.",
@@ -58,7 +58,7 @@ and `YOUR_DATASET/alignment.json` should look like:
         "./datasets/YOUR_DATASET/audio/003.mp3": "They have discovered a new particle.",
     }
 
-After you prepare as described, you should genearte preprocessed data with:
+아래 명령어로 학습데이터 제작
 
     python3 -m datasets.generate_data ./datasets/YOUR_DATASET/alignment.json
 
@@ -84,7 +84,7 @@ By using [Google Speech Recognition API](https://cloud.google.com/speech/), we p
 
        python3 -m recognition.google --audio_pattern "./datasets/son/audio/*.*.wav"
 
-4. By comparing original text and recognised text, save `audio<->text` pair information into `./datasets/son/alignment.json`.
+4. 대본내용과 구글 api 세그먼트 내용을 비교하여 50% 이상의 데이터만 추출, save `audio<->text` pair information into `./datasets/son/alignment.json`.
 
        python3 -m recognition.alignment --recognition_path "./datasets/son/recognition.json" --score_threshold=0.5
 
@@ -108,6 +108,9 @@ Because the automatic generation is extremely naive, the dataset is noisy. Howev
 		
 
 ### 3. 모델 트레이닝
+트레이닝 시작에 앞서 파이썬 가상환경 실행 필요
+venv/bin/activate 를 실행해야함
+multi- 폴더에 있다고 가정 했을때 source venv/bin/activate 로 가상환경 실행가능.
 
 The important hyperparameters for a models are defined in `hparams.py`.
 
