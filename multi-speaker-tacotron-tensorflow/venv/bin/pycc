@@ -1,0 +1,3 @@
+#!/home/leeyoungsu/practice/multi-speaker-tacotron-tensorflow/venv/bin/python
+from numba.pycc import main
+main()
