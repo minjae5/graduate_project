@@ -25,7 +25,7 @@ class Synthesizer(object):
         tf.reset_default_graph()
         self.sess.close()
 
-    def load(self, checkpoint_path, num_speakers=1, checkpoint_step=None, model_name='tacotron'):
+    def load(self, checkpoint_path, num_speakers=2, checkpoint_step=None, model_name='tacotron'):
         self.num_speakers = num_speakers
 
         if os.path.isdir(checkpoint_path):
@@ -40,7 +40,9 @@ class Synthesizer(object):
         input_lengths = tf.placeholder(tf.int32, [None], 'input_lengths')
 
         batch_size = tf.shape(inputs)[0]
-        speaker_id = tf.placeholder_with_default(
+        speaker_
+
+id = tf.placeholder_with_default(
                 tf.zeros([batch_size], dtype=tf.int32), [None], 'speaker_id')
 
         load_hparams(hparams, load_path)

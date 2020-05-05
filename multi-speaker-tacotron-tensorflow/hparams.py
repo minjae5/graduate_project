@@ -119,7 +119,7 @@ elif False: # Single Speaker with generalization
 
 basic_params.update({
     # Training
-    'batch_size': 16,
+    'batch_size': 10,
     'adam_beta1': 0.9,
     'adam_beta2': 0.999,
     'use_fixed_test_inputs': False,
