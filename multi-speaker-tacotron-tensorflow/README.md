@@ -11,7 +11,7 @@ Samples audios (in Korean) can be found [here](http://carpedm20.github.io/tacotr
 ![model](./assets/model.png)
 
 
-## Prerequisites
+## 필요
 
 - Python 3.6+
 - FFmpeg
@@ -20,7 +20,7 @@ Samples audios (in Korean) can be found [here](http://carpedm20.github.io/tacotr
 
 ## Usage
 
-### 1. Install prerequisites
+### 1. 필요 속성 설치
 
 After preparing [Tensorflow](https://www.tensorflow.org/install/), install prerequisites with:
 
@@ -30,9 +30,9 @@ After preparing [Tensorflow](https://www.tensorflow.org/install/), install prere
 If you want to synthesize a speech in Korean dicrectly, follow [2-3. Download pre-trained models](#2-3-download-pre-trained-models).
 
 
-### 2-1. Generate custom datasets
+### 2-1. 일반 데이터셋 생성
 
-The `datasets` directory should look like:
+데이터셋 디렉토리 상태:
 
     datasets
     ├── son
@@ -50,7 +50,7 @@ The `datasets` directory should look like:
             ├── 3.mp3
             └── ...
 
-and `YOUR_DATASET/alignment.json` should look like:
+and `YOUR_DATASET/alignment.json` 파일의 상태 :
 
     {
         "./datasets/YOUR_DATASET/audio/001.mp3": "My name is Taehoon Kim.",
@@ -58,12 +58,12 @@ and `YOUR_DATASET/alignment.json` should look like:
         "./datasets/YOUR_DATASET/audio/003.mp3": "They have discovered a new particle.",
     }
 
-After you prepare as described, you should genearte preprocessed data with:
+아래 명령어로 학습데이터 제작
 
     python3 -m datasets.generate_data ./datasets/YOUR_DATASET/alignment.json
 
 
-### 2-2. Generate Korean datasets
+### 2-2. 한국어 데이터셋 생성
 
 Follow below commands. (explain with `son` dataset)
 
@@ -71,19 +71,20 @@ Follow below commands. (explain with `son` dataset)
 
        export GOOGLE_APPLICATION_CREDENTIALS="YOUR-GOOGLE.CREDENTIALS.json"
 
-1. Download speech(or video) and text.
+1. 음성 텍스트 다운
 
        python3 -m datasets.son.download
 
-2. Segment all audios on silence.
+2. 침묵 시간 제거
 
        python3 -m audio.silence --audio_pattern "./datasets/son/audio/*.wav" --method=pydub
 
-3. By using [Google Speech Recognition API](https://cloud.google.com/speech/), we predict sentences for all segmented audios.
+3. 구글 api이용 오디오 세그먼트 예측
+By using [Google Speech Recognition API](https://cloud.google.com/speech/), we predict sentences for all segmented audios.
 
        python3 -m recognition.google --audio_pattern "./datasets/son/audio/*.*.wav"
 
-4. By comparing original text and recognised text, save `audio<->text` pair information into `./datasets/son/alignment.json`.
+4. 대본내용과 구글 api 세그먼트 내용을 비교하여 50% 이상의 데이터만 추출, save `audio<->text` pair information into `./datasets/son/alignment.json`.
 
        python3 -m recognition.alignment --recognition_path "./datasets/son/recognition.json" --score_threshold=0.5
 
@@ -106,23 +107,26 @@ Because the automatic generation is extremely naive, the dataset is noisy. Howev
 		python3 -m datasets.generate_data ./datasets/LJSpeech_1_0
 		
 
-### 3. Train a model
+### 3. 모델 트레이닝
+트레이닝 시작에 앞서 파이썬 가상환경 실행 필요
+venv/bin/activate 를 실행해야함
+multi- 폴더에 있다고 가정 했을때 source venv/bin/activate 로 가상환경 실행가능.
 
 The important hyperparameters for a models are defined in `hparams.py`.
 
 (**Change `cleaners` in `hparams.py` from `korean_cleaners` to `english_cleaners` to train with English dataset**)
 
-To train a single-speaker model:
+단일화자 트레이닝 방법:
 
     python3 train.py --data_path=datasets/son
     python3 train.py --data_path=datasets/son --initialize_path=PATH_TO_CHECKPOINT
 
-To train a multi-speaker model:
+다중화자 트레이닝 방법:
 
     # after change `model_type` in `hparams.py` to `deepvoice` or `simple`
     python3 train.py --data_path=datasets/son1,datasets/son2
 
-To restart a training from previous experiments such as `logs/son-20171015`:
+ `logs/son-20171015`이 파일에 대한 러닝 재시작:
 
     python3 train.py --data_path=datasets/son --load_path logs/son-20171015
 
@@ -168,6 +172,8 @@ This is not an official [DEVSISTERS](http://devsisters.com/) product. This proje
 - [DEVIEW 2017 presentation](https://www.slideshare.net/carpedm20/deview-2017-80824162)
 
 
-## Author
+## 원 저자
 
 Taehoon Kim / [@carpedm20](http://carpedm20.github.io/)
+
+## 현재 러닝 진행도 오류발생
