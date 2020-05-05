@@ -150,30 +150,4 @@ For generating non-korean audio, you must set the argument --is_korean False.
 	python3 app.py --load_path logs/LJSpeech_1_0-20180108 --num_speakers=1 --is_korean=False
 	python3 synthesizer.py --load_path logs/LJSpeech_1_0-20180108 --text="Winter is coming." --is_korean=False
 
-## Results
 
-Training attention on single speaker model:
-
-![model](./assets/attention_single_speaker.gif)
-
-Training attention on multi speaker model:
-
-![model](./assets/attention_multi_speaker.gif)
-
-
-## Disclaimer
-
-This is not an official [DEVSISTERS](http://devsisters.com/) product. This project is not responsible for misuse or for any damage that you may cause. You agree that you use this software at your own risk.
-
-
-## References
-
-- [Keith Ito](https://github.com/keithito)'s [tacotron](https://github.com/keithito/tacotron)
-- [DEVIEW 2017 presentation](https://www.slideshare.net/carpedm20/deview-2017-80824162)
-
-
-## 원 저자
-
-Taehoon Kim / [@carpedm20](http://carpedm20.github.io/)
-
-## 현재 러닝 진행도 오류발생
