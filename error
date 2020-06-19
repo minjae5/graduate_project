@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "texttest.py", line 13, in <module>
+    ko.normalize(test)
+  File "/home/leeyoungsu/practice/multi-speaker-tacotron-tensorflow/text/korean.py", line 162, in normalize
+    text = normalize_number(text)
+  File "/home/leeyoungsu/practice/multi-speaker-tacotron-tensorflow/text/korean.py", line 213, in normalize_number
+    lambda x: number_to_korean(x, False), text)
+  File "/usr/lib/python3.6/re.py", line 191, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+  File "/home/leeyoungsu/practice/multi-speaker-tacotron-tensorflow/text/korean.py", line 213, in <lambda>
+    lambda x: number_to_korean(x, False), text)
+  File "/home/leeyoungsu/practice/multi-speaker-tacotron-tensorflow/text/korean.py", line 244, in number_to_korean
+    num = ast.literal_eval(num_str)
+  File "/usr/lib/python3.6/ast.py", line 48, in literal_eval
+    node_or_string = parse(node_or_string, mode='eval')
+  File "/usr/lib/python3.6/ast.py", line 35, in parse
+    return compile(source, filename, mode, PyCF_ONLY_AST)
+  File "<unknown>", line 1
+    02
+     ^
+
