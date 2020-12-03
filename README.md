@@ -20,5 +20,6 @@ Upload 폴더 속 코드
 
 # Reference
 
-carpedm20son, github; https://github.com/carpedm20/multi-speaker-tacotron-tensorflow/blob/master/datasets/son/download.py 
+carpedm20son, github; https://github.com/carpedm20/multi-speaker-tacotron-tensorflow/blob/master/datasets/son/download.py
+
 keithito, tacotron, github; https://github.com/keithito/tacotron
