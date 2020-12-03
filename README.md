@@ -14,3 +14,4 @@ KSS 135000 step 진행
 
 # 최종
 Upload 폴더 속 코드 
+![image](https://user-images.githubusercontent.com/56864842/100970530-729a6200-3578-11eb-97f1-d5019fce15c4.png)
